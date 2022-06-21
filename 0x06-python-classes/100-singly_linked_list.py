@@ -71,3 +71,12 @@ class SinglyLinkedList:
             new_node.next_node = temp.next_node
             temp.next_node = new_node
 
+    def __str__(self):
+        """Defines the printing  of a singly linked list"""
+        values = []
+        temp = self.__head
+        while temp is not None:
+            values.append(str(temp.data))
+            temp = temp.next_node
+
+        return '\n'.join(values)
