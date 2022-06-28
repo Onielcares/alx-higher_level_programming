@@ -1,6 +1,6 @@
 # Python - Test Driven Development
 
-! [giphy-4](./giphy-4.git)
+! [giphy-4](./giphy-4.gif)
 
 ## Background Context
 
