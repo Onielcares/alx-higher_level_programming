@@ -1,5 +1,5 @@
-#Learning javascript
+# Learning javascript
 
-This is me kearning Javscript
+This is me learning Javscript
 
-##Javascript Warm-Up
+## Javascript Warm-Up
