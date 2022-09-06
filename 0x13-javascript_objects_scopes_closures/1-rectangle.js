@@ -2,7 +2,7 @@
 /**
  * Represents a rectangle class.
  */
- class Rectangle {
+class Rectangle {
     /**
      * initializes an instance of the class
      * @param {Number} w -- width
@@ -12,6 +12,6 @@
       this.width = w;
       this.height = h;
     }
-  }
+}
   
-  module.exports = Rectangle;
+module.exports = Rectangle;
