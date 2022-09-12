@@ -1,26 +1,41 @@
 #!/usr/bin/python3
 """
-Lists all State objects and corresponding City objects contained in the DB
+Create the state California with the city San Francisco
 """
-import sys
+
 from relationship_state import Base, State
 from relationship_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sys import argv, exit, stderr
+
+
+HELP = '{} username password database'.format(argv[0])
+HOST = 'localhost'
+PORT = 3306
+URLFORMAT = '{dialect}+{driver}://{user}:{password}@{host}/{database}'
 
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.
-                           format(sys.argv[1], sys.argv[2], sys.argv[3]),
-                           pool_pre_ping=True)
+    try:
+        params = {
+            'dialect': 'mysql',
+            'driver': 'mysqldb',
+            'user': argv[1],
+            'password': argv[2],
+            'host': HOST,
+            'database': argv[3],
+        }
+    except IndexError:
+        stderr.write('usage: {}\n'.format(HELP))
+        exit(2)
+    engine = create_engine(URLFORMAT.format(**params), pool_pre_ping=True)
     Base.metadata.create_all(engine)
-
     Session = sessionmaker(bind=engine)
     session = Session()
-
-    st = session.query(State).outerjoin(City).order_by(State.id, City.id).all()
-
-    for state in st:
-        print("{}: {}".format(state.id, state.name))
+    results = session.query(State)
+    for state in results.order_by(State.id).all():
+        print('{}: {}'.format(state.id, state.name))
         for city in state.cities:
-            print("    {}: {}".format(city.id, city.name))
+            print('\t{}: {}'.format(city.id, city.name))
+    session.close()
