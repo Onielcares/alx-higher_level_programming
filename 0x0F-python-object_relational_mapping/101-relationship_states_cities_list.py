@@ -1,26 +1,31 @@
 #!/usr/bin/python3
-"""
-creates the State California with the City San Francisco from the database
-"""
+'''script for task 16'''
 
-
-import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from relationship_state import Base, State
+from relationship_state import State, Base
 from relationship_city import City
-from sys import argv
+import sys
 
+if _name_ == '_main_':
+    username = sys.argv[1]
+    password = sys.argv[2]
+    db_name = sys.argv[3]
+    host = 'localhost'
+    port = '3306'
 
-if __name__ == "__main__":
-    eng = create_engine("mysql+mysqldb://{}:{}@localhost/{}".format(argv[1],
-                                                                    argv[2],
-                                                                    argv[3]))
-    Base.metadata.create_all(eng)
-    Session = sessionmaker(bind=eng)
-    session = Session()
-    cali = State(name="California")
-    cali.cities = [City(name="San Francisco")]
-    session.add(cali)
-    session.commit()
-    session.close()
+    engine = create_engine('mysql+mysqldb://{}:{}@{}:{}/{}'.format(
+                            username, password, host, port, db_name
+                            ), pool_pre_ping=True)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    loc_session = Session()
+    states = loc_session.query(State).order_by(State.id).all()
+
+    for state in states:
+        print('{}: {}'.format(state.id, state.name))
+        for city in state.cities:
+            print('\t{}: {}'.format(city.id, city.name))
+
+    loc_session.close()
+    engine.dispose()
