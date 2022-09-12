@@ -1,5 +1,4 @@
-# Project on  Python Object Relational Mapping
+# Project on Python Object Relatonal Mapping
+This project involves the use of sqlalchemy...
 
-This task involves using the sqlalchemy
-
-## More right up coming
+## God Save Our Head
