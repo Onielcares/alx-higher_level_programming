@@ -1,4 +1,5 @@
-# SQL with python
-This is using SQL and Python together, basicallly ORM.
+# Project on  Python Object Relational Mapping
 
-## Thank You.
+This task involves using the sqlalchemy
+
+## More right up coming
