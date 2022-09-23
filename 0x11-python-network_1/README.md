@@ -63,21 +63,14 @@ Star Wars API, GitHub API, and Twitter API).
   `[<id>] <name>`.
   * Uses `requests`.
 
-* **9. Star Wars API #0**
-  * [9-starwars.py](./9-starwars.py): Python script sends a search request to
-  the Star Wars API `people` endpoint with a given string.
-  * Usage: `./9-starwars.py <search string>`
-	* Displays the total number and `name` of each result.
-	* Uses `requests`.
-
-* **10. My Github!**
+* **09. My Github!**
   * [10-my_github.py](./10-my_github.py): Python script that takes GitHub
   credentials (username and password) and uses the Github API to display the
   corresponding ID.
   * Usage: `./10-my_github.py <username> <password>`
 	* Uses `requests`.
 
-* **11. Time for an interview!**
+* **10. Time for an interview!**
   * [100-github_commits.py](./100-github_commits.py): Python script that lists
   the 10 most recent comments of a given GitHub repository using the GitHub API.
   * Usage: `./100-github_commits.py <repository name> <owner name>`
